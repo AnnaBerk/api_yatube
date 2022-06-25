@@ -23,7 +23,6 @@ class CommentSerializer(serializers.ModelSerializer):
     
             
 class UserSerializer(serializers.ModelSerializer):
-    cats = serializers.StringRelatedField(many=True, read_only=True)
 
     class Meta:
         model = User
