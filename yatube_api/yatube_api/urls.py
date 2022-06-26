@@ -9,12 +9,13 @@ router = DefaultRouter()
 
 router.register('api/v1/posts', PostViewSet)
 router.register('api/v1/groups', GroupViewSet)
+router.register('api/v1/posts/{post_id}/comments', CommentViewSet)
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include(router.urls)),
     path('api/v1/api-token-auth/', include('djoser.urls')),
-    path('api/v1/api-token-auth', include('djoser.urls.jwt')),
+    path('api/v1/api-token-auth/', include('djoser.urls.jwt')),
 ]
 
 
