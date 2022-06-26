@@ -3,6 +3,7 @@ from django.conf.urls.static import static
 from django.contrib import admin
 from django.urls import include, path
 from rest_framework.routers import DefaultRouter
+from rest_framework.authtoken import views
 from api.views import PostViewSet, GroupViewSet, CommentViewSet
 
 router = DefaultRouter()
@@ -14,8 +15,7 @@ router.register('api/v1/posts/{post_id}/comments', CommentViewSet)
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include(router.urls)),
-    path('api/v1/api-token-auth/', include('djoser.urls')),
-    path('api/v1/api-token-auth/', include('djoser.urls.jwt')),
+    path('api/v1/api-token-auth/', views.obtain_auth_token),
 ]
 
 
