@@ -5,14 +5,13 @@ from rest_framework import permissions
 
 from posts.models import Post, Group
 from posts.serializers import PostSerializer,  GroupSerializer, CommentSerializer
-from rest_framework.permissions import IsAuthenticatedOrReadOnly
 from .permissions import IsUserOrReadOnly
 
 
 class PostViewSet(viewsets.ModelViewSet):
     queryset = Post.objects.all()
     serializer_class = PostSerializer 
-    permission_classes = [IsAuthenticatedOrReadOnly, IsUserOrReadOnly]
+    permission_classes = [IsUserOrReadOnly, permissions.IsAuthenticated]
     
     def perform_create(self, serializer):
         serializer.save(author=self.request.user)
